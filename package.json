@@ -4,7 +4,7 @@
 	"description": "Microblogging site",
 	"main": "src/server.js",
 	"scripts": {
-		"test": "node test/*.js",
+		"test": "node test/test.js",
 		"start": "nodemon src/server.js"
 	},
 	"repository": {
