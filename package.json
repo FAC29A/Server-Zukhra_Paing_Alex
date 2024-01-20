@@ -2,10 +2,10 @@
 	"name": "server-zukhra_paing_alex",
 	"version": "1.0.0",
 	"description": "Microblogging site",
-	"main": "server.js",
+	"main": "src/server.js",
 	"scripts": {
-		"test": "node --test",
-		"start": "nodemon server.js"
+		"test": "node test/test.js",
+		"start": "nodemon src/server.js"
 	},
 	"repository": {
 		"type": "git",
