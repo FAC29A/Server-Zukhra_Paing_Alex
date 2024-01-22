@@ -5,8 +5,7 @@
 	"main": "src/server.js",
 	"scripts": {
 		"test": "node test/test.js",
-		"start": "node src/index.js",
-		"dev": "nodemon challenge/index.js"
+		"start": "node src/index.js"
 	},
 	"repository": {
 		"type": "git",
