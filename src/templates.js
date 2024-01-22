@@ -69,6 +69,7 @@ function layout(title, content) {
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="/normalize.css" />
         <link rel="stylesheet" href="/styles.css" />
+        <link rel="shortcut icon" type="image/png" href="/favicon.ico?" />
       </head>
       <body>
         ${content}
