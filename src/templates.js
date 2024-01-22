@@ -14,11 +14,10 @@ function home(posts, errors = {}, values = {}) {
       </p>
       <p>
         <label for="message">Message</label>
-        <textarea
-          id="message"
-          name="message">
-            ${values.message ? sanitize(values.message) : ""}
-          </textarea>
+        <label for="message">Message</label>
+        <textarea 
+        id="message"
+        name="message">${values.message ? sanitize(values.message) : ''}</textarea>
         ${validation(errors.message)}
         </p>
       <button>Send</button>
