@@ -2,6 +2,9 @@ const express = require('express')
 const server = express()
 const { home } = require("./templates.js");
 
+// Serve static files from the 'public' directory
+server.use(express.static('public'));
+
 const posts = [];
 
 server.get("/", (req, res) => {
