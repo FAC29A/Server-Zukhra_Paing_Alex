@@ -18,7 +18,8 @@
 	},
 	"homepage": "https://github.com/FAC29A/Server-Zukhra_Paing_Alex#readme",
 	"dependencies": {
-		"express": "^4.18.2"
+		"express": "^4.18.2",
+		"uuid": "^9.0.1"
 	},
 	"devDependencies": {
 		"nodemon": "^3.0.3"

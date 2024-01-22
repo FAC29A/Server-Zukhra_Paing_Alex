@@ -56,6 +56,9 @@ function postItem(post) {
     <li>
       <p>${sanitize(post.message)}</p>
       <p>—${sanitize(post.nickname)} | ${prettyDate}</p>
+      <form action="/delete/${post.id}" method="POST">
+        <button type="submit">Delete post</button>
+      </form>
     </li>
   `
 }
