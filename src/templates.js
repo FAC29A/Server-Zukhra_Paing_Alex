@@ -1,5 +1,6 @@
 function home(posts, errors = {}, values = {}) {
 	const title = 'Create post'
+	const needBack = false
 	const content = /*html*/ `
     <h2>New post</h2>
     <form method="POST">
@@ -25,18 +26,19 @@ function home(posts, errors = {}, values = {}) {
       <button>Send</button>
     </form>
   `
-	return layout(title, content)
+	return layout(title, content, needBack)
 }
 
 function postsPage(posts) {
-  const title = 'All posts'
-  const content =`
+	const needBack = true
+	const title = 'All posts'
+	const content = `
   <h2>All posts</h2>
     <ul>
       ${posts.map(postItem).join('')}
     </ul>
     `
-    return layout(title, content)
+	return layout(title, content, needBack)
 }
 
 function sanitize(string) {
@@ -70,7 +72,12 @@ function postItem(post) {
   `
 }
 
-function layout(title, content) {
+function layout(title, content, needBack) {
+	var backButton = ``
+	if (needBack) {
+		backButton = `<button type="submit">Back</button>`
+	}
+
 	return /*html*/ `
     <!doctype html>
     <html>
@@ -83,9 +90,10 @@ function layout(title, content) {
       </head>
       <body>
         ${content}
+        ${backButton}
       </body>
     </html>
   `
 }
 
-module.exports = { home , postsPage}
+module.exports = { home, postsPage }
