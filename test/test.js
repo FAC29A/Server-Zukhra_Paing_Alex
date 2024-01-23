@@ -5,4 +5,4 @@ test('First Test', () => {
 	assert.equal(1, 1)
 })
 
-console.log("hi")
+console.log("hi2")
