@@ -1,5 +1,5 @@
 function home(posts, errors = {}, values = {}) {
-	const title = 'All posts'
+	const title = 'Create post'
 	const content = /*html*/ `
     <h2>New post</h2>
     <form method="POST">
@@ -24,12 +24,19 @@ function home(posts, errors = {}, values = {}) {
         </p>
       <button>Send</button>
     </form>
-    <h2>All posts</h2>
+  `
+	return layout(title, content)
+}
+
+function postsPage(posts) {
+  const title = 'All posts'
+  const content =`
+  <h2>All posts</h2>
     <ul>
       ${posts.map(postItem).join('')}
     </ul>
-  `
-	return layout(title, content)
+    `
+    return layout(title, content)
 }
 
 function sanitize(string) {
@@ -81,4 +88,4 @@ function layout(title, content) {
   `
 }
 
-module.exports = { home }
+module.exports = { home , postsPage}
