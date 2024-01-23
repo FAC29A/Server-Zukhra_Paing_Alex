@@ -1,6 +1,6 @@
 const express = require('express')
 const server = express()
-const { home, postsPage} = require('./templates.js')
+const { home, postsPage } = require('./templates.js')
 
 //For the ID creation
 const { v4: uuidv4 } = require('uuid')
@@ -15,10 +15,10 @@ server.get('/', (req, res) => {
 	res.send(body)
 })
 
-server.get("/posts", (request, response) => {
-  const body= postsPage(posts)
-  response.send(body);
-});
+server.get('/posts', (request, response) => {
+	const body = postsPage(posts)
+	response.send(body)
+})
 
 server.post('/', express.urlencoded({ extended: false }), (req, res) => {
 	const nickname = req.body.nickname
@@ -49,6 +49,11 @@ server.post('/delete/:id', (req, res) => {
 		posts.splice(index, 1)
 	}
 	res.redirect('/posts')
+})
+
+server.post('/back', (req, res) => {
+	
+	res.redirect('/')
 })
 
 module.exports = server
