@@ -75,10 +75,10 @@ function postItem(post) {
 function layout(title, content, needBack) {
 	var backButton = ``
 	if (needBack) {
-		backButton = `<button type="button" onclick="window.location.href='/'">Back</button>`
-		// backButton = `<form action="/back" method="POST">
-    //               <button type="submit">Back</button>
-    //               </form>`
+		//backButton = `<button type="button" onclick="window.location.href='/'">Back</button>`
+		backButton = `<form action="/back" method="POST">
+		              <button type="submit">Back</button>
+		              </form>`
 	}
 
 	return /*html*/ `
