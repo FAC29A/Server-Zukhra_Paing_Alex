@@ -2,10 +2,10 @@ function home(posts, errors = {}, values = {}) {
 	const title = 'Create post'
 	const needBack = false
 	const content = /*html*/ `
-    <h2>New post</h2>
+    <h1>New post</h1>
     <form method="POST">
       <p>
-        <label for="nickname">Nickname</label>
+        <label for="nickname">Your Name</label>
         <input
           id="nickname"
           name="nickname"
@@ -14,16 +14,15 @@ function home(posts, errors = {}, values = {}) {
         ${validation(errors.nickname)}
       </p>
       <p>
-        <label for="message">Message</label>
-        <label for="message">Message</label>
+        <label for="message">Text</label>
         <textarea 
         id="message"
         name="message">${
 					values.message ? sanitize(values.message) : ''
 				}</textarea>
         ${validation(errors.message)}
-        </p>
-      <button>Send</button>
+      </p>
+      <button class="right-button">Send</button>
     </form>
   `
 	return layout(title, content, needBack)
@@ -33,7 +32,7 @@ function postsPage(posts) {
 	const needBack = true
 	const title = 'All posts'
 	const content = `
-  <h2>All posts</h2>
+  <h1>All posts</h1>
     <ul>
       ${posts.map(postItem).join('')}
     </ul>
@@ -64,9 +63,9 @@ function postItem(post) {
 	return `
     <li>
       <p>${sanitize(post.message)}</p>
-      <p>—${sanitize(post.nickname)} | ${prettyDate}</p>
+      <p>${sanitize(post.nickname)} | ${prettyDate}</p>
       <form action="/delete/${post.id}" method="POST">
-        <button type="submit">Delete post</button>
+        <button type="submit" class="right-button">Delete post</button>
       </form>
     </li>
   `
@@ -90,6 +89,11 @@ function layout(title, content, needBack) {
         <link rel="stylesheet" href="/normalize.css" />
         <link rel="stylesheet" href="/styles.css" />
         <link rel="shortcut icon" type="image/png" href="/favicon.ico?" />
+        <link rel="preconnect" href="https://fonts.googleapis.com"/>
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+        <link href="https://fonts.googleapis.com/css2?family=Orbitron&family=WindSong&display=swap" rel="stylesheet"/>
+        <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet"/>
+        <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300&display=swap" rel="stylesheet"/>
       </head>
       <body>
         ${content}
