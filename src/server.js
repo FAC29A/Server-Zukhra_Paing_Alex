@@ -73,4 +73,8 @@ server.post('/back', (req, res) => {
 	res.redirect('/')
 })
 
+server.post('/showPosts', (req, res) => {
+	res.redirect('/posts')
+})
+
 module.exports = server
