@@ -39,9 +39,6 @@ p {
 	max-width: 100%;
 }
 
-label {
-}
-
 button {
 	padding: 0.2rem;
 	box-shadow: 1px 1px 1px var(--secondary-dark);
