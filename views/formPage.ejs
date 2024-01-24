@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<%- include('header') %>
+	<body>
+		<h1>New post</h1>
+		<form method="POST">
+			<p>
+				<label for="nickname">Your Name</label>
+				<input id="nickname" name="nickname" />
+				<!-- value="${values.nickname ? sanitize(values.nickname) : ''}" -->
+				<!-- /> -->
+				<!-- ${validation(errors.nickname)} -->
+			</p>
+			<p>
+				<label for="message">Text</label>
+				<textarea id="message" name="message"></textarea>
+				<!-- ${values.message ? sanitize(values.message) : ''} -->
+
+				<!-- ${validation(errors.message)} -->
+			</p>
+			<button class="right-button">Send</button>
+		</form>
+	</body>
+</html>

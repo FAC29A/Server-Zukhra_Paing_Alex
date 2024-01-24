@@ -1,6 +1,10 @@
 const express = require('express')
 const server = express()
-const { home, postsPage } = require('./templates.js')
+
+const {sanitize} = require('./functions')
+
+//Set view engine to EJS
+server.set('view engine', 'ejs')
 
 //For the ID creation
 const { v4: uuidv4 } = require('uuid')
@@ -11,13 +15,11 @@ server.use(express.static('public'))
 const posts = []
 
 server.get('/', (req, res) => {
-	const body = home(posts)
-	res.send(body)
+	res.render('formPage', { title: 'New Post' })
 })
 
-server.get('/posts', (request, response) => {
-	const body = postsPage(posts)
-	response.send(body)
+server.get('/posts', (req, res) => {
+	res.render('postsPage', { title: 'Posts', posts: posts , sanitize: sanitize})
 })
 
 server.post('/', express.urlencoded({ extended: false }), (req, res) => {
@@ -32,7 +34,7 @@ server.post('/', express.urlencoded({ extended: false }), (req, res) => {
 	}
 	if (Object.keys(errors).length) {
 		const body = home(posts, errors, req.body)
-		res.status(400).send(body)
+		//res.status(400).send(body)
 	} else {
 		const created = Date.now()
 		//Create a random unique ID
@@ -52,7 +54,6 @@ server.post('/delete/:id', (req, res) => {
 })
 
 server.post('/back', (req, res) => {
-	
 	res.redirect('/')
 })
 
