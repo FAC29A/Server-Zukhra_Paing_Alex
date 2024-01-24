@@ -21,7 +21,6 @@ main {
 body {
 	margin: 1rem;
 	padding: 1rem;
-	background-color: var(--primary-light);
 	font-family: var(--font-main);
 }
 
@@ -36,6 +35,10 @@ p {
 	justify-content: center;
 	gap: 1rem;
 	max-width: 100%;
+}
+
+.message {
+	justify-content: flex-start;
 }
 
 button {
@@ -62,7 +65,9 @@ form {
 	display: flex;
 	flex-direction: column;
 	flex-wrap: wrap;
-	border: 0.3rem solid var(--neutral);
+	background-color: var(--primary-light);
+	border: 0.2rem solid var(--neutral);
+	border-style: dashed;
 	border-radius: 2px;
 	padding: 1rem;
 	width: auto;
@@ -88,7 +93,8 @@ ul {
 }
 
 li {
-	border: 0.3rem solid var(--neutral);
+	border: 0.2rem solid var(--neutral);
+	background-color: var(--primary-light);
 	margin-bottom: 1rem;
 	padding: 1rem;
 	border-radius: 2px;

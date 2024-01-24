@@ -7,12 +7,12 @@
 			<% posts.forEach((post) => { const date = new Date(post.created); const
 			prettyDate = date.toLocaleString('en-GB'); %>
 			<li>
-				<p><%- sanitize(post.message) %></p>
+				<p class="message"><%- sanitize(post.message) %></p>
 				<p class="nameAndDate">
 					<%- sanitize(post.nickname) %> | <%= prettyDate %>
 				</p>
 				<form class="buttonForm" action="/delete/<%= post.id %>" method="POST">
-					<button type="submit" class="right-button">Delete post</button>
+					<button type="submit" class="right-button">Delete</button>
 				</form>
 			</li>
 			<% }); %>
