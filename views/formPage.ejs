@@ -6,18 +6,26 @@
 		<form method="POST">
 			<p>
 				<label for="nickname">Your Name</label>
-				<input id="nickname" name="nickname" />
-				<!-- value="${values.nickname ? sanitize(values.nickname) : ''}" -->
-				<!-- /> -->
-				<!-- ${validation(errors.nickname)} -->
+				<input
+					id="nickname"
+					name="nickname"
+					value="<%- values.nickname ? sanitize(values.nickname) : '' %>"
+				/>
 			</p>
+			<% if (errors.nickname) { %>
+			<div class="error"><%- errors.nickname %></div>
+			<% } %>
+
 			<p>
 				<label for="message">Text</label>
-				<textarea id="message" name="message"></textarea>
-				<!-- ${values.message ? sanitize(values.message) : ''} -->
-
-				<!-- ${validation(errors.message)} -->
+				<textarea id="message" name="message">
+<%- values.message ? sanitize(values.message) : '' %></textarea
+				>
 			</p>
+			<% if (errors.message) { %>
+			<div class="error"><%- errors.message %></div>
+			<% } %>
+
 			<button class="right-button">Send</button>
 		</form>
 	</body>

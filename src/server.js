@@ -1,7 +1,7 @@
 const express = require('express')
 const server = express()
 
-const {sanitize} = require('./functions')
+const { sanitize } = require('./functions')
 
 //Set view engine to EJS
 server.set('view engine', 'ejs')
@@ -15,11 +15,21 @@ server.use(express.static('public'))
 const posts = []
 
 server.get('/', (req, res) => {
-	res.render('formPage', { title: 'New Post' })
+	res.render('formPage', {
+		title: 'New Post',
+		sanitize: sanitize,
+		values: req.body || {},
+		errors: {},
+	})
 })
 
 server.get('/posts', (req, res) => {
-	res.render('postsPage', { title: 'Posts', posts: posts , sanitize: sanitize})
+	res.render('postsPage', {
+		title: 'Posts',
+		posts: posts,
+		sanitize: sanitize,
+		values: req.body || {},
+	})
 })
 
 server.post('/', express.urlencoded({ extended: false }), (req, res) => {
@@ -33,7 +43,13 @@ server.post('/', express.urlencoded({ extended: false }), (req, res) => {
 		errors.message = 'Please enter a message'
 	}
 	if (Object.keys(errors).length) {
-		const body = home(posts, errors, req.body)
+		//const body = home(posts, errors, req.body)
+		res.render('formPage', {
+			title: 'New Post',
+			sanitize: sanitize,
+			values: req.body || {},
+			errors: errors,
+		})
 		//res.status(400).send(body)
 	} else {
 		const created = Date.now()

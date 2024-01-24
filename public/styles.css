@@ -1,9 +1,10 @@
 :root {
 	--primary-light: rgb(209, 238, 255);
-	--secondary-light: #a3b18aff;
+	--secondary-light: rgb(50, 78, 104);
 	--neutral: rgb(119, 134, 168);
 	--primary-dark: #3a5a40ff;
 	--secondary-dark: #344e41ff;
+	--error: rgba(212, 8, 8, 0.849);
 	--font-titles: Prompt, cursive;
 	--font-main: Prompt, sans-serif;
 }
@@ -30,17 +31,19 @@ h1 {
 }
 
 p {
-	margin: 0.5rem 0;
 	display: flex;
+	margin: 0;
+	margin-bottom: 1rem;
 	justify-content: center;
+	gap: 1rem;
+	max-width: 100%;
 }
 
 label {
-	margin: 0.5rem;
 }
 
 button {
-	padding: 0.4rem;
+	padding: 0.2rem;
 	box-shadow: 1px 1px 1px var(--secondary-dark);
 	width: fit-content;
 	cursor: pointer;
@@ -55,6 +58,8 @@ input,
 textarea {
 	border: 1px solid var(--secondary-light);
 	border-radius: 4px;
+	max-width: 100%;
+	box-sizing: border-box;
 }
 
 form {
@@ -62,13 +67,25 @@ form {
 	flex-direction: column;
 	flex-wrap: wrap;
 	background-color: var(--neutral);
-	gap: 1rem;
-	width: fit-content;
+
+	padding: 1rem;
+	width: auto;
+	max-width: 100%;
 }
 
-form p,
-form {
-	width: 100%;
+.backForm {
+	background: none;
+	padding: 0;
+}
+.deleteForm {
+	background: none;
+	padding: 0;
+}
+
+.nameAndDate {
+	font-style: italic;
+	justify-content: flex-end;
+	font-size: small;
 }
 
 ul {
@@ -82,6 +99,13 @@ li {
 	padding: 1rem;
 	border-radius: 2px;
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	gap: 0.5 rem;
+}
+
+.error {
+	color: var(--error);
+	text-align: center;
+	text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 @media (max-width: 600px) {
@@ -90,5 +114,9 @@ li {
 	}
 	h1 {
 		font-size: 1.5rem;
+	}
+	input,
+	textarea {
+		width: 100%; /* Adjust width to 100% for small screens */
 	}
 }

@@ -8,14 +8,16 @@
 			prettyDate = date.toLocaleString('en-GB'); %>
 			<li>
 				<p><%- sanitize(post.message) %></p>
-				<p><%- sanitize(post.nickname) %> | <%= prettyDate %></p>
-				<form action="/delete/<%= post.id %>" method="POST">
+				<p class="nameAndDate">
+					<%- sanitize(post.nickname) %> | <%= prettyDate %>
+				</p>
+				<form class="deleteForm" action="/delete/<%= post.id %>" method="POST">
 					<button type="submit" class="right-button">Delete post</button>
 				</form>
 			</li>
 			<% }); %>
 		</ul>
-		<form action="/back" method="POST">
+		<form class="backForm" action="/back" method="POST">
 			<button type="submit">Back</button>
 		</form>
 	</body>
