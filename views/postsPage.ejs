@@ -11,13 +11,13 @@
 				<p class="nameAndDate">
 					<%- sanitize(post.nickname) %> | <%= prettyDate %>
 				</p>
-				<form class="deleteForm" action="/delete/<%= post.id %>" method="POST">
+				<form class="buttonForm" action="/delete/<%= post.id %>" method="POST">
 					<button type="submit" class="right-button">Delete post</button>
 				</form>
 			</li>
 			<% }); %>
 		</ul>
-		<form class="backForm" action="/back" method="POST">
+		<form class="buttonForm" action="/back" method="POST">
 			<button type="submit">Back</button>
 		</form>
 	</body>
