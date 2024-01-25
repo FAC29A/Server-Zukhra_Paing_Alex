@@ -60,13 +60,28 @@ server.post('/', express.urlencoded({ extended: false }), (req, res) => {
 	}
 })
 
-server.post('/delete/:id', (req, res) => {
+server.get('/delete/:id', (req, res) => {
 	const id = req.params.id
 	const index = posts.findIndex((post) => post.id.toString() === id)
 	if (index !== -1) {
 		posts.splice(index, 1)
 	}
 	res.redirect('/posts')
+})
+
+server.get('/edit/:id', (req, res) => {
+	const id = req.params.id
+	const post = posts.find((post) => post.id === id)
+
+	if (post) {
+		res.render('singlePost', {
+			title: 'Edit Post',
+			post: post,
+			sanitize: sanitize,
+		})
+	} else {
+		res.status(404).send('Post not found')
+	}
 })
 
 server.post('/back', (req, res) => {

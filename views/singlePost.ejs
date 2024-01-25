@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<%- include('header') %>
+	<body>
+		<h1>Post</h1>
+		<div class="singlePost">
+			<div>
+				<label>Name: </label><%- sanitize(post.nickname) %>
+			</div>
+			<div>
+				<label>Date: </label><%= new Date(post.created).toLocaleString('en-GB') %>
+			</div>
+			<div>
+				<label>Text: </label><p class="message"><%- sanitize(post.message) %></p>
+			</div>
+
+			
+			
+
+			<div class="buttonsGroup">
+				<form class="buttonForm" action="/edit/<%= post.id %>" method="GET">
+					<button type="submit">Update Post</button>
+				</form>
+				<form class="buttonForm" action="/delete/<%= post.id %>" method="GET">
+					<button type="submit" class="right-button">Delete</button>
+				</form>
+			</div>
+		</div>
+		<form class="buttonForm" action="/back" method="POST">
+			<button type="submit">Back</button>
+		</form>
+	</body>
+</html>
