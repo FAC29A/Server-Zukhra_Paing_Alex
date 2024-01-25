@@ -4,29 +4,31 @@
 	<body>
 		<h1>Post</h1>
 		<div class="singlePost">
+			<div><label>Name:&nbsp;</label><%- sanitize(post.nickname) %></div>
 			<div>
-				<label>Name: </label><%- sanitize(post.nickname) %>
+				<label>Date:&nbsp;</label><%= new
+				Date(post.created).toLocaleString('en-GB') %>
 			</div>
 			<div>
-				<label>Date: </label><%= new Date(post.created).toLocaleString('en-GB') %>
-			</div>
-			<div>
-				<label>Text: </label><p class="message"><%- sanitize(post.message) %></p>
+				<label for="message" class="topAligned">Text: </label>
 			</div>
 
-			
-			
+			<form action="/edit/<%= post.id %>" method="POST">
+				<textarea id="message" class="tall" name="message">
+<%- post.message ? sanitize(post.message) : '' %></textarea>
 
-			<div class="buttonsGroup">
-				<form class="buttonForm" action="/edit/<%= post.id %>" method="GET">
-					<button type="submit">Update Post</button>
-				</form>
-				<form class="buttonForm" action="/delete/<%= post.id %>" method="GET">
-					<button type="submit" class="right-button">Delete</button>
-				</form>
-			</div>
+				<button class="right-button marginTop-button" type="submit">
+					Modify Post
+				</button>
+			</form>
+
+			<form class="buttonForm" action="/delete/<%= post.id %>" method="GET">
+				<button type="submit" class="right-button marginTop-button">
+					Delete
+				</button>
+			</form>
 		</div>
-		<form class="buttonForm" action="/back" method="POST">
+		<form class="buttonForm" action="/showPosts" method="GET">
 			<button type="submit">Back</button>
 		</form>
 	</body>

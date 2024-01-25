@@ -10,10 +10,10 @@
 				<div class="singlePost">
 					<p class="message"><%- sanitize(post.message) %></p>
 					<p class="nameAndDate">
-						<%- sanitize(post.nickname) %> | <%= prettyDate %>
+						by: "<%- sanitize(post.nickname) %>" on: <%= prettyDate %>
 					</p>
 					<div class="buttonsGroup">
-						<form class="buttonForm" action="/edit/<%= post.id %>" method="GET">
+						<form class="buttonForm" action="/openEdit/<%= post.id %>" method="GET">
 							<button type="submit">Edit Post</button>
 						</form>
 						<form
@@ -28,7 +28,7 @@
 			</li>
 			<% }); %>
 		</ul>
-		<form class="buttonForm" action="/back" method="POST">
+		<form class="buttonForm" action="/back" method="GET">
 			<button type="submit">Back</button>
 		</form>
 	</body>
