@@ -1,6 +1,10 @@
 const express = require('express')
 const server = express()
 
+//Use Router for posts
+const userRouter = require('../routes/posts')
+server.use('/posts', userRouter)
+
 const { sanitize } = require('./functions')
 
 //Set view engine to EJS
@@ -23,14 +27,14 @@ server.get('/', (req, res) => {
 	})
 })
 
-server.get('/posts', (req, res) => {
-	res.render('postsPage', {
-		title: 'Posts',
-		posts: posts,
-		sanitize: sanitize,
-		values: req.body || {},
-	})
-})
+// server.get('/posts', (req, res) => {
+// 	res.render('postsPage', {
+// 		title: 'Posts',
+// 		posts: posts,
+// 		sanitize: sanitize,
+// 		values: req.body || {},
+// 	})
+// })
 
 server.post('/', express.urlencoded({ extended: false }), (req, res) => {
 	const nickname = req.body.nickname
