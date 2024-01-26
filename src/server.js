@@ -1,7 +1,10 @@
+// Load environment variables from .env file
+require('dotenv').config()
+
 const express = require('express')
 const server = express()
 
-const { sanitize } = require('./functions')
+const { sanitize, moderate, formatListWithAnd } = require('./functions')
 
 //Set view engine to EJS
 server.set('view engine', 'ejs')
@@ -32,26 +35,40 @@ server.get('/posts', (req, res) => {
 	})
 })
 
-server.post('/', express.urlencoded({ extended: false }), (req, res) => {
+server.post('/', express.urlencoded({ extended: false }), async (req, res) => {
 	const nickname = req.body.nickname
 	const message = req.body.message
 	const errors = {}
+
 	if (!nickname) {
 		errors.nickname = 'Please enter your nickname'
 	}
+
 	if (!message) {
 		errors.message = 'Please enter a message'
 	}
-	if (Object.keys(errors).length) {
+
+	if (Object.keys(errors).length === 0) {
+		// Check for moderation flags
+		const flaggedCategories = await moderate(message)
+		if (flaggedCategories.length > 0) {
+			// Add moderation error
+			const formattedCategories = formatListWithAnd(flaggedCategories)
+			errors.message = `Post flagged for: ${formattedCategories} content. It won't be posted.`
+		}
+	}
+
+	if (Object.keys(errors).length > 0) {
+		// Render form with errors
 		res.render('formPage', {
 			title: 'New Post',
 			sanitize: sanitize,
-			values: req.body || {},
+			values: req.body,
 			errors: errors,
 		})
 	} else {
+		// Create and add the post
 		const created = Date.now()
-		//Create a random unique ID
 		const id = uuidv4()
 		posts.push({ nickname, message, created, id })
 		res.redirect('/posts')

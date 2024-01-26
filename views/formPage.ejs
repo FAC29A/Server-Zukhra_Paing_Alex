@@ -9,7 +9,7 @@
 				<input
 					id="nickname"
 					name="nickname"
-					value="<%- values.nickname ? sanitize(values.nickname) : '' %>"
+					value="<%- values.nickname ? sanitize(values.nickname) : 'Anonymous' %>"
 				/>
 			</p>
 			<% if (errors.nickname) { %>
