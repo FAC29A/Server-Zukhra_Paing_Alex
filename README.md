@@ -10,7 +10,7 @@ Automatically deploy commits to "main" branch
 https://fly.io/docs/app-guides/continuous-deployment-with-github-actions/
 
 ## Stretch
-Delete my own posts
+Modareate posts using OpenAI API
 
 
 
