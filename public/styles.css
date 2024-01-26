@@ -2,8 +2,6 @@
 	--primary-light: rgb(209, 238, 255);
 	--secondary-light: rgb(50, 78, 104);
 	--neutral: rgb(119, 134, 168);
-	--primary-dark: #3a5a40ff;
-	--secondary-dark: #344e41ff;
 	--error: rgba(212, 8, 8, 0.849);
 	--font-titles: Prompt, cursive;
 	--font-main: Prompt, sans-serif;
@@ -147,7 +145,7 @@ label.topAligned {
 .error {
 	color: var(--error);
 	text-align: center;
-	text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+	text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 @media (max-width: 300px) {

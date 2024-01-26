@@ -54,7 +54,7 @@ server.post('/', express.urlencoded({ extended: false }), async (req, res) => {
 		if (flaggedCategories.length > 0) {
 			// Add moderation error
 			const formattedCategories = formatListWithAnd(flaggedCategories)
-			errors.message = `Post flagged for: ${formattedCategories} content. It won't be posted.`
+			errors.message = `Post flagged for ${formattedCategories} content. It won't be posted.`
 		}
 	}
 
