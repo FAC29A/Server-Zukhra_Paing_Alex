@@ -35,6 +35,11 @@ p {
 	justify-content: center;
 	gap: 1rem;
 	max-width: 100%;
+	white-space: normal;
+	overflow-wrap: break-word;
+	text-overflow: ellipsis;
+	display: block;
+	width: 100%;
 }
 
 .message {
@@ -53,12 +58,33 @@ button {
 	align-self: flex-end;
 }
 
+.marginTop-button {
+	margin-top: 1rem;
+}
+
+.buttonsGroup {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	gap: 1rem;
+	justify-content: space-between;
+}
+
 input,
 textarea {
 	border: 1px solid var(--secondary-light);
 	border-radius: 4px;
 	max-width: 100%;
+	width: 100%;
 	box-sizing: border-box;
+}
+
+textarea.medium {
+	min-height: 6rem;
+}
+
+textarea.tall {
+	min-height: 8rem;
 }
 
 form {
@@ -92,14 +118,30 @@ ul {
 	padding: 0;
 }
 
-li {
+.singlePost {
+	line-height: 2rem;
+}
+
+label {
+	font-weight: bold;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	display: inline-block; /* Make label inline-block to respect width */
+	max-width: 100%;
+}
+
+label.topAligned {
+	vertical-align: top;
+}
+
+.singlePost {
 	border: 0.2rem solid var(--neutral);
 	background-color: var(--primary-light);
 	margin-bottom: 1rem;
 	padding: 1rem;
 	border-radius: 2px;
 	box-shadow: 6px 2px 4px rgba(0, 0, 0, 0.4);
-	gap: 0.5 rem;
+	gap: 0.5rem;
 }
 
 .error {
@@ -108,15 +150,15 @@ li {
 	text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
-@media (max-width: 600px) {
+@media (max-width: 300px) {
 	main {
 		padding: 1rem;
 	}
 	h1 {
 		font-size: 1.5rem;
 	}
-	input,
-	textarea {
-		width: 100%; /* Adjust width to 100% for small screens */
+	label {
+		white-space: normal; /* Allow wrapping on narrow screens */
+		text-overflow: clip;
 	}
 }

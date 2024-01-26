@@ -43,14 +43,12 @@ server.post('/', express.urlencoded({ extended: false }), (req, res) => {
 		errors.message = 'Please enter a message'
 	}
 	if (Object.keys(errors).length) {
-		//const body = home(posts, errors, req.body)
 		res.render('formPage', {
 			title: 'New Post',
 			sanitize: sanitize,
 			values: req.body || {},
 			errors: errors,
 		})
-		//res.status(400).send(body)
 	} else {
 		const created = Date.now()
 		//Create a random unique ID
@@ -60,7 +58,7 @@ server.post('/', express.urlencoded({ extended: false }), (req, res) => {
 	}
 })
 
-server.post('/delete/:id', (req, res) => {
+server.get('/delete/:id', (req, res) => {
 	const id = req.params.id
 	const index = posts.findIndex((post) => post.id.toString() === id)
 	if (index !== -1) {
@@ -69,11 +67,42 @@ server.post('/delete/:id', (req, res) => {
 	res.redirect('/posts')
 })
 
-server.post('/back', (req, res) => {
+server.get('/openEdit/:id', (req, res) => {
+	const id = req.params.id
+	const post = posts.find((post) => post.id === id)
+
+	if (post) {
+		res.render('singlePost', {
+			title: 'Edit Post',
+			post: post,
+			sanitize: sanitize,
+		})
+	} else {
+		res.status(404).send('Post not found')
+	}
+})
+
+server.post(
+	'/edit/:id',
+	express.urlencoded({ extended: false }),
+	(req, res) => {
+		const id = req.params.id
+		const index = posts.findIndex((post) => post.id === id)
+		if (index !== -1) {
+			posts[index].message = req.body.message
+			posts[index].created = Date.now()
+			res.redirect('/posts')
+		} else {
+			res.status(404).send('Post not found')
+		}
+	}
+)
+
+server.get('/back', (req, res) => {
 	res.redirect('/')
 })
 
-server.post('/showPosts', (req, res) => {
+server.get('/showPosts', (req, res) => {
 	res.redirect('/posts')
 })
 
