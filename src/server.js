@@ -1,7 +1,7 @@
 // Load environment variables from .env file
 require('dotenv').config()
 
-const model = require('./model/DBFunctions.js')
+//const model = require('./model/DBFunctions.js')
 
 const express = require('express')
 const server = express()
