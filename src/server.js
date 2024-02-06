@@ -1,6 +1,8 @@
 // Load environment variables from .env file
 require('dotenv').config()
 
+//const model = require('./model/DBFunctions.js')
+
 const express = require('express')
 const server = express()
 
@@ -99,21 +101,17 @@ server.get('/openEdit/:id', (req, res) => {
 	}
 })
 
-server.post(
-	'/edit/:id',
-	express.urlencoded({ extended: false }),
-	(req, res) => {
-		const id = req.params.id
-		const index = posts.findIndex((post) => post.id === id)
-		if (index !== -1) {
-			posts[index].message = req.body.message
-			posts[index].created = Date.now()
-			res.redirect('/posts')
-		} else {
-			res.status(404).send('Post not found')
-		}
+server.post('/edit/:id', express.urlencoded({ extended: false }), (req, res) => {
+	const id = req.params.id
+	const index = posts.findIndex((post) => post.id === id)
+	if (index !== -1) {
+		posts[index].message = req.body.message
+		posts[index].created = Date.now()
+		res.redirect('/posts')
+	} else {
+		res.status(404).send('Post not found')
 	}
-)
+})
 
 server.get('/back', (req, res) => {
 	res.redirect('/')
